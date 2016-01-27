@@ -1,0 +1,40 @@
+{
+  "name": "mx-modeler",
+  "version": "1.0.0",
+  "description": "Start your Mendix modeler from command-line",
+  "main": "cli.js",
+  "bin": {
+    "mx-modeler": "./bin/mx-modeler"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mendix",
+    "modeler",
+    "command-line",
+    "client",
+    "version-selector"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JelteMX/mx-modeler"
+  },
+  "bugs": {
+    "url": "https://github.com/JelteMX/mx-modeler/issues"
+  },
+  "readmeFilename": "README.md",
+  "author": {
+    "name": "J.W. Lagendijk",
+    "email": "jelte.lagendijk@mendix.com"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^1.1.1",
+    "lodash": "^4.0.1",
+    "node-mendix-modeler-path": "https://github.com/JelteMX/node-mendix-modeler-path/archive/v1.0.0.tar.gz",
+    "optimist": "^0.6.1",
+    "pad": "^1.0.0",
+    "update-notifier": "^0.6.0"
+  }
+}
