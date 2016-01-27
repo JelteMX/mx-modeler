@@ -1,8 +1,12 @@
-# Mendix command-line tool for NodeJS
+# Mendix command-line tool for NodeJS [![npm version](https://badge.fury.io/js/mx-modeler.svg)](http://badge.fury.io/js/mx-modeler)
 
-**This tool is in beta and not functional yet**
+[![NPM](https://nodei.co/npm/mx-moodeler.svg?downloads=true&stars=true)](https://nodei.co/npm/mx-modeler/)
 
-**This tool is not published yet!**
+**This tool is in beta**
+
+> Start your Mendix projects from command-line.
+
+## About
 
 Starting your Mendix projects from the command-line. This tool obviously only works in Windows. Built and tested on Windows 7.
 
@@ -28,8 +32,27 @@ Run it in your folder where you have your project file
 
 ## Further options
 
-```bash
-	mx-modeler -h
+```
+	> mx-modeler -h
+
+
+  __  ____   __                    _      _
+ |  \/  \ \ / /                   | |    | |
+ | \  / |\ V / _ __ ___   ___   __| | ___| | ___ _ __
+ | |\/| | > < | '_ ` _ \ / _ \ / _` |/ _ \ |/ _ \ '__|
+ | |  | |/ . \| | | | | | (_) | (_| |  __/ |  __/ |
+ |_|  |_/_/ \_\_| |_| |_|\___/ \__,_|\___|_|\___|_|
+
+ Command-line client, version: 1.0.0
+ Issues? Please report them at : https://github.com/JelteMX/mx-modeler/issues
+
+ Usage : mx-modeler [OPTIONS] [<file.mpk>]
+
+Options:
+  -u, --update   Checks if there is an update for mx-modeler
+  -l, --list     List all modeler versions
+  -v, --version  Use a specific version to open the project. Usage: '-v 6.0.0 <project.mpr>'
+  -h, --help     Shows this help screen
 ```
 
 ## License

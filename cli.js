@@ -118,7 +118,7 @@ if (versionSelector.err !== null) {
   } else {
     console.log(chalk.red(' Error: ') + 'Cannot find specified version: ' + argv.version + '\n');
   }
-} else if (argv.help/* || files.length !== 1*/) {
+} else if (argv.help || files.length !== 1) {
   console.log(optimist.help());
   process.exit(0);
 } else {
