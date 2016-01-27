@@ -1,6 +1,6 @@
 # Mendix command-line tool for NodeJS [![npm version](https://badge.fury.io/js/mx-modeler.svg)](http://badge.fury.io/js/mx-modeler)
 
-[![NPM](https://nodei.co/npm/mx-moodeler.svg?downloads=true&stars=true)](https://nodei.co/npm/mx-modeler/)
+[![NPM](https://nodei.co/npm/mx-modeler.svg?downloads=true&stars=true)](https://nodei.co/npm/mx-modeler/)
 
 **This tool is in beta**
 
