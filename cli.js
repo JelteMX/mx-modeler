@@ -1,17 +1,20 @@
 'use strict';
 
-var optimist = require('optimist'),
+var path = require('path'),
+    fs = require('fs'),
+
+    optimist = require('optimist'),
     chalk = require('chalk'),
     _ = require('lodash'),
     updateNotifier = require('update-notifier'),
-    path = require('path'),
-    fs = require('fs'),
+    versionSelector = require('node-mendix-modeler-path'),
+
     currentFolder = path.resolve('./') + '/',
     pkg = require('./package.json'),
-    versionSelector = require("node-mendix-modeler-path"),
-    modelerPaths = require("./lib/modeler-paths"),
-    mendixRunner = require("./lib/runner"),
-    mprChecker = require("./lib/mpr-check");
+
+    modelerPaths = require('./lib/modeler-paths'),
+    mendixRunner = require('./lib/runner'),
+    mprChecker = require('./lib/mpr-check');
 
 var banner = [
   '',

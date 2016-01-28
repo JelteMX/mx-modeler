@@ -35,24 +35,25 @@ Run it in your folder where you have your project file
 ```
 	> mx-modeler -h
 
+    __  ____   __                    _      _
+   |  \/  \ \ / /                   | |    | |
+   | \  / |\ V / _ __ ___   ___   __| | ___| | ___ _ __
+   | |\/| | > < | '_ ` _ \ / _ \ / _` |/ _ \ |/ _ \ '__|
+   | |  | |/ . \| | | | | | (_) | (_| |  __/ |  __/ |
+   |_|  |_/_/ \_\_| |_| |_|\___/ \__,_|\___|_|\___|_|
 
-  __  ____   __                    _      _
- |  \/  \ \ / /                   | |    | |
- | \  / |\ V / _ __ ___   ___   __| | ___| | ___ _ __
- | |\/| | > < | '_ ` _ \ / _ \ / _` |/ _ \ |/ _ \ '__|
- | |  | |/ . \| | | | | | (_) | (_| |  __/ |  __/ |
- |_|  |_/_/ \_\_| |_| |_|\___/ \__,_|\___|_|\___|_|
+   Command-line client, version: 1.1.0
+   Issues? Please report them at : https://github.com/JelteMX/mx-modeler/issues
 
- Command-line client, version: 1.0.0
- Issues? Please report them at : https://github.com/JelteMX/mx-modeler/issues
+   Usage : mx-modeler [OPTIONS] [<file.mpk>]
 
- Usage : mx-modeler [OPTIONS] [<file.mpk>]
+  Options:
+    -u, --update   Checks if there is an update for mx-modeler
+    -l, --list     List all modeler versions
+    -c, --check    Check the the modeler version for a .mpr file
+    -v, --version  Use a specific version to open the project. Usage: '-v 6.0.0 <project.mpr>'
+    -h, --help     Shows this help screen
 
-Options:
-  -u, --update   Checks if there is an update for mx-modeler
-  -l, --list     List all modeler versions
-  -v, --version  Use a specific version to open the project. Usage: '-v 6.0.0 <project.mpr>'
-  -h, --help     Shows this help screen
 ```
 
 ## License
