@@ -10,7 +10,8 @@ var optimist = require('optimist'),
     pkg = require('./package.json'),
     versionSelector = require("node-mendix-modeler-path"),
     modelerPaths = require("./lib/modeler-paths"),
-    mendixRunner = require("./lib/runner");
+    mendixRunner = require("./lib/runner"),
+    mprChecker = require("./lib/mpr-check");
 
 var banner = [
   '',
@@ -34,6 +35,9 @@ var argv = optimist
   .boolean('l')
     .alias('l', 'list')
     .describe('l', 'List all modeler versions')
+  .boolean('c')
+    .alias('c', 'check')
+    .describe('c', 'Check the the modeler version for a .mpr file')
   .string('v')
     .alias('v', 'version')
     .describe('v', 'Use a specific version to open the project. Usage: \'-v 6.0.0 <project.mpr>\'')
@@ -44,8 +48,12 @@ var argv = optimist
 
 var files = argv._;
 
-var checkFile = function (filename) {
+var checkFile = function (filename, extensions) {
   var file = path.resolve(currentFolder, filename);
+
+  if (!extensions) {
+    extensions = ['.mpr', '.mpk'];
+  }
 
   try {
     var f = fs.statSync(file);
@@ -54,8 +62,8 @@ var checkFile = function (filename) {
     process.exit(1);
   }
 
-  if (path.parse(file).ext !== '.mpr' && path.parse(file).ext !== '.mpk'){
-    console.log(chalk.red(' Error: ') + 'The specified file needs to be .mpr of .mpk, ' + files[0] + ' is not valid\n');
+  if (extensions.indexOf(path.parse(file).ext) === -1){
+    console.log(chalk.red(' Error: ') + 'The specified file needs to be of type ' + chalk.cyan(extensions.join('/')) + ', "' + files[0] + '" is not a valid file \n');
     process.exit(1);
   }
 
@@ -118,10 +126,19 @@ if (versionSelector.err !== null) {
   } else {
     console.log(chalk.red(' Error: ') + 'Cannot find specified version: ' + argv.version + '\n');
   }
+} else if (argv.check && files.length === 1) {
+  // Check an mpr file
+  var file = checkFile(files[0], '.mpr');
+  if (file) {
+    console.log(' Checking the modeler version of ' + chalk.cyan(file) + '\n');
+    mprChecker.check(file);
+  }
 } else if (argv.help || files.length !== 1) {
+  // We do not have a file (or the arguments length !== 1, meaning multiple files)
   console.log(optimist.help());
   process.exit(0);
 } else {
+  // We have a file, let's open it with the Version selector
   var file = checkFile(files[0]);
   if (file) {
     console.log(' Running ' + chalk.cyan(file) + '\n');
