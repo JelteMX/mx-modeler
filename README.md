@@ -42,7 +42,7 @@ Run it in your folder where you have your project file
    | |  | |/ . \| | | | | | (_) | (_| |  __/ |  __/ |
    |_|  |_/_/ \_\_| |_| |_|\___/ \__,_|\___|_|\___|_|
 
-   Command-line client, version: 1.1.0
+   Command-line client, version: 1.2.0
    Issues? Please report them at : https://github.com/JelteMX/mx-modeler/issues
 
    Usage : mx-modeler [OPTIONS] [<file.mpk>]

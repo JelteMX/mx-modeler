@@ -71,7 +71,7 @@ var checkFile = function (filename, extensions) {
   }
 
   return file;
-}
+};
 
 // RUN THE CLIENT
 
@@ -113,19 +113,30 @@ if (versionSelector.err !== null) {
     ].join('\n');
     console.log(msg);
   }
-} else if (argv.version && files.length === 1) {
+} else if (argv.help || files.length > 1) {
+  // We do not have a file (or the arguments length !== 1, meaning multiple files)
+  console.log(optimist.help());
+  process.exit(0);
+} else if (argv.version) {
   // RUN THE FILE WITH A SPECIFIC VERSION
   if (modelerPaths.err !== null) {
     console.log(chalk.red(' Error: ') + modelerPaths.err + '\n');
     process.exit(1);
   }
   if (modelerPaths.output && modelerPaths.output.versions && modelerPaths.output.modelers[argv.version]) {
-    var modelerPath = modelerPaths.output.modelers[argv.version],
-        file = checkFile(files[0]);
-    if (file) {
-      console.log(' Running ' + chalk.cyan(file) + ' on Modeler version ' + chalk.cyan(argv.version) + '\n');
-      mendixRunner.run(modelerPath, file);
+    var modelerPath = modelerPaths.output.modelers[argv.version];
+
+    if (files[0]) {
+      var file = checkFile(files[0]);
+      if (file) {
+        console.log(' Running ' + chalk.cyan(file) + ' on Modeler version ' + chalk.cyan(argv.version) + '\n');
+        mendixRunner.run(modelerPath, file);
+      }
+    } else {
+      console.log(' Running Modeler version ' + chalk.cyan(argv.version) + '\n');
+      mendixRunner.run(modelerPath, null);
     }
+
   } else {
     console.log(chalk.red(' Error: ') + 'Cannot find specified version: ' + argv.version + '\n');
   }
@@ -136,15 +147,16 @@ if (versionSelector.err !== null) {
     console.log(' Checking the modeler version of ' + chalk.cyan(file) + '\n');
     mprChecker.check(file);
   }
-} else if (argv.help || files.length !== 1) {
-  // We do not have a file (or the arguments length !== 1, meaning multiple files)
-  console.log(optimist.help());
-  process.exit(0);
 } else {
-  // We have a file, let's open it with the Version selector
-  var file = checkFile(files[0]);
-  if (file) {
-    console.log(' Running ' + chalk.cyan(file) + '\n');
-    mendixRunner.runVersionSelector(versionSelector.output.cmd, file);
+  if (files[0]) {
+    var file = checkFile(files[0]);
+    if (file) {
+      console.log(' Running ' + chalk.cyan(file) + '\n');
+      mendixRunner.runVersionSelector(versionSelector.output.cmd, file);
+    }
+  } else {
+    // We do not have a file (or the arguments length !== 1, meaning multiple files)
+    console.log(optimist.help());
+    process.exit(0);
   }
 }
