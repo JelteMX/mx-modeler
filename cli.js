@@ -142,7 +142,7 @@ if (versionSelector.err !== null) {
   }
 } else if (argv.check && files.length === 1) {
   // Check an mpr file
-  var file = checkFile(files[0], '.mpr');
+  var file = checkFile(files[0], ['.mpr']);
   if (file) {
     console.log(' Checking the modeler version of ' + chalk.cyan(file) + '\n');
     mprChecker.check(file);
