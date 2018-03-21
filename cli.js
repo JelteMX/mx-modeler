@@ -1,22 +1,22 @@
 'use strict';
 
-var path = require('path'),
-    fs = require('fs'),
+const path = require('path');
+const fs = require('fs');
 
-    optimist = require('optimist'),
-    chalk = require('chalk'),
-    _ = require('lodash'),
-    updateNotifier = require('update-notifier'),
-    versionSelector = require('node-mendix-modeler-path'),
+const optimist = require('optimist');
+const chalk = require('chalk');
+const _ = require('lodash');
+const updateNotifier = require('update-notifier');
+const versionSelector = require('node-mendix-modeler-path');
 
-    currentFolder = path.resolve('./') + '/',
-    pkg = require('./package.json'),
+const currentFolder = path.resolve('./') + '/';
+const pkg = require('./package.json');
 
-    modelerPaths = require('./lib/modeler-paths'),
-    mendixRunner = require('./lib/runner'),
-    mprChecker = require('./lib/mpr-check');
+const modelerPaths = require('./lib/modeler-paths');
+const mendixRunner = require('./lib/runner');
+const { check } = require('./lib/mpr-check');
 
-var banner = [
+const banner = [
   '',
   chalk.bold.cyan('  __  ____   __') + '                    _      _             ',
   chalk.bold.cyan(' |  \\/  \\ \\ / /') + '                   | |    | |           ',
@@ -30,7 +30,7 @@ var banner = [
   ''
 ].join('\n');
 
-var argv = optimist
+const argv = optimist
   .usage(' Usage : ' + chalk.bold.cyan('mx-modeler [OPTIONS] [<file.mpk>]'))
   .boolean('u')
     .alias('u', 'update')
@@ -49,17 +49,17 @@ var argv = optimist
     .describe('h', 'Shows this help screen')
   .argv;
 
-var files = argv._;
+const files = argv._;
 
-var checkFile = function (filename, extensions) {
-  var file = path.resolve(currentFolder, filename);
+const checkFile = (filename, extensions) => {
+  const file = path.resolve(currentFolder, filename);
 
   if (!extensions) {
     extensions = ['.mpr', '.mpk'];
   }
 
   try {
-    var f = fs.statSync(file);
+    const f = fs.statSync(file);
   } catch (e) {
     console.log(chalk.red(' Error: ') + 'Cannot find/read file ' + files[0] + '\n');
     process.exit(1);
@@ -105,10 +105,13 @@ if (versionSelector.err !== null) {
     console.log(chalk.red(' Error: ') + modelerPaths.err + '\n');
     process.exit(1);
   } else if (modelerPaths.output && modelerPaths.output.modelers && modelerPaths.output.versions) {
-    var msg = [
+    const msg = [
       ' The following Modeler versions are found: ',
       '',
-      _.map(modelerPaths.output.versions, function (ver) { return '    ' + ver; }).join('\n'),
+      _.map(
+        modelerPaths.output.versions,
+        (ver) => { return '    ' + ver; }
+      ).join('\n'),
       ''
     ].join('\n');
     console.log(msg);
@@ -124,10 +127,10 @@ if (versionSelector.err !== null) {
     process.exit(1);
   }
   if (modelerPaths.output && modelerPaths.output.versions && modelerPaths.output.modelers[argv.version]) {
-    var modelerPath = modelerPaths.output.modelers[argv.version];
+    const modelerPath = modelerPaths.output.modelers[argv.version];
 
     if (files[0]) {
-      var file = checkFile(files[0]);
+      const file = checkFile(files[0]);
       if (file) {
         console.log(' Running ' + chalk.cyan(file) + ' on Modeler version ' + chalk.cyan(argv.version) + '\n');
         mendixRunner.run(modelerPath, file);
@@ -142,14 +145,14 @@ if (versionSelector.err !== null) {
   }
 } else if (argv.check && files.length === 1) {
   // Check an mpr file
-  var file = checkFile(files[0], ['.mpr']);
+  const file = checkFile(files[0], ['.mpr']);
   if (file) {
     console.log(' Checking the modeler version of ' + chalk.cyan(file) + '\n');
-    mprChecker.check(file);
+    check(file);
   }
 } else {
   if (files[0]) {
-    var file = checkFile(files[0]);
+    const file = checkFile(files[0]);
     if (file) {
       console.log(' Running ' + chalk.cyan(file) + '\n');
       mendixRunner.runVersionSelector(versionSelector.output.cmd, file);

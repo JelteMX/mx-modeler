@@ -12,7 +12,7 @@ Starting your Mendix projects from the command-line. This tool obviously only wo
 
 ## Install
 
-Make sure you have Node.JS installed.
+Make sure you have Node.JS installed. **This is built for LTS Version 8.x.x**.
 
 Run:
 
@@ -42,7 +42,7 @@ Run it in your folder where you have your project file
    | |  | |/ . \| | | | | | (_) | (_| |  __/ |  __/ |
    |_|  |_/_/ \_\_| |_| |_|\___/ \__,_|\___|_|\___|_|
 
-   Command-line client, version: 1.3.0
+   Command-line client, version: 1.4.0
    Issues? Please report them at : https://github.com/JelteMX/mx-modeler/issues
 
    Usage : mx-modeler [OPTIONS] [<file.mpk>]
@@ -60,7 +60,7 @@ Run it in your folder where you have your project file
 
 The MIT License (MIT)
 
-Copyright (c) 2016 J.W. Lagendijk <jelte.lagendijk@mendix.com>
+Copyright (c) 2016-2018 J.W. Lagendijk <jelte.lagendijk@mendix.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
