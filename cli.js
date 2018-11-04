@@ -40,7 +40,7 @@ const argv = optimist
     .describe('l', 'List all modeler versions')
   .boolean('c')
     .alias('c', 'check')
-    .describe('c', 'Check the the modeler version for a .mpr file')
+    .describe('c', 'Check the the modeler version for a .mpr file. Usage: \'-c <project.mpr>\'')
   .string('v')
     .alias('v', 'version')
     .describe('v', 'Use a specific version to open the project. Usage: \'-v 6.0.0 <project.mpr>\'')
@@ -126,17 +126,29 @@ if (versionSelector.err !== null) {
     console.log(chalk.red(' Error: ') + modelerPaths.err + '\n');
     process.exit(1);
   }
-  if (modelerPaths.output && modelerPaths.output.versions && modelerPaths.output.modelers[argv.version]) {
-    const modelerPath = modelerPaths.output.modelers[argv.version];
+
+  if (!modelerPaths.output) {
+    console.log(chalk.red(' Error: ') + 'I have no output of modelers, unexpected');
+    process.exit(1);
+  }
+
+  const version = argv.version.split('.').length < 3 ? argv.version + '.' : argv.version;
+  const filteredKeys = Object.keys(modelerPaths.output.modelers).filter(k => k.indexOf(version) !== -1);
+  const filteredKey = filteredKeys.length === 1 ? filteredKeys[0] : null;
+
+  if (filteredKeys.length > 1) {
+    console.log(chalk.red(' Error: ') + 'I have multiple candidates, please specify: ' + filteredKeys.join(', ') + '\n');
+  } else if (filteredKey !== null && modelerPaths.output.versions && modelerPaths.output.modelers[filteredKey]) {
+    const modelerPath = modelerPaths.output.modelers[filteredKey];
 
     if (files[0]) {
       const file = checkFile(files[0]);
       if (file) {
-        console.log(' Running ' + chalk.cyan(file) + ' on Modeler version ' + chalk.cyan(argv.version) + '\n');
+        console.log(' Running ' + chalk.cyan(file) + ' on Modeler version ' + chalk.cyan(filteredKey) + '\n');
         mendixRunner.run(modelerPath, file);
       }
     } else {
-      console.log(' Running Modeler version ' + chalk.cyan(argv.version) + '\n');
+      console.log(' Running Modeler version ' + chalk.cyan(filteredKey) + '\n');
       mendixRunner.run(modelerPath, null);
     }
 

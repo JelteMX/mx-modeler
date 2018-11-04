@@ -42,15 +42,15 @@ Run it in your folder where you have your project file
    | |  | |/ . \| | | | | | (_) | (_| |  __/ |  __/ |
    |_|  |_/_/ \_\_| |_| |_|\___/ \__,_|\___|_|\___|_|
 
-   Command-line client, version: 1.4.0
+   Command-line client, version: 1.5.0
    Issues? Please report them at : https://github.com/JelteMX/mx-modeler/issues
 
    Usage : mx-modeler [OPTIONS] [<file.mpk>]
 
-  Options:
+   Options:
     -u, --update   Checks if there is an update for mx-modeler
     -l, --list     List all modeler versions
-    -c, --check    Check the the modeler version for a .mpr file
+    -c, --check    Check the the modeler version for a .mpr file. Usage: '-c <project.mpr>'
     -v, --version  Use a specific version to open the project. Usage: '-v 6.0.0 <project.mpr>'
     -h, --help     Shows this help screen
 

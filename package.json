@@ -1,6 +1,6 @@
 {
   "name": "mx-modeler",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "Start your Mendix modeler from command-line",
   "main": "cli.js",
   "bin": {
@@ -35,7 +35,7 @@
     "node-mendix-modeler-path": "https://github.com/JelteMX/node-mendix-modeler-path/archive/v1.1.0.tar.gz",
     "optimist": "^0.6.1",
     "pad": "^2.0.3",
-    "sqlite3": "^4.0.0",
+    "sqlite3": "^4.0.3",
     "update-notifier": "^2.3.0"
   }
 }
