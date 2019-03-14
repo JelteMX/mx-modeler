@@ -1,6 +1,6 @@
 {
   "name": "mx-modeler",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "Start your Mendix modeler from command-line",
   "main": "cli.js",
   "bin": {
