@@ -41,6 +41,9 @@ const argv = optimist
   .boolean('c')
     .alias('c', 'check')
     .describe('c', 'Check the the modeler version for a .mpr file. Usage: \'-c <project.mpr>\'')
+  .string('f')
+    .alias('f', 'flags')
+    .describe('f', 'Start the modeler with extra feature flags. Should not contain dashes(--) an comma separated. Usage: \'-a enable-jsactions,some-future-flag\'')
   .string('v')
     .alias('v', 'version')
     .describe('v', 'Use a specific version to open the project. Usage: \'-v 6.0.0 <project.mpr>\'')
@@ -121,6 +124,12 @@ if (versionSelector.err !== null) {
   console.log(optimist.help());
   process.exit(0);
 } else if (argv.version) {
+  let featureFlags = [];
+
+  if (argv.flags) {
+    featureFlags = argv.flags.split(',').map(f => f && f.length ? '--' + f : null).filter(f => f !== null);
+  }
+
   // RUN THE FILE WITH A SPECIFIC VERSION
   if (modelerPaths.err !== null) {
     console.log(chalk.red(' Error: ') + modelerPaths.err + '\n');
@@ -145,11 +154,11 @@ if (versionSelector.err !== null) {
       const file = checkFile(files[0]);
       if (file) {
         console.log(' Running ' + chalk.cyan(file) + ' on Modeler version ' + chalk.cyan(filteredKey) + '\n');
-        mendixRunner.run(modelerPath, file);
+        mendixRunner.run(modelerPath, file, featureFlags);
       }
     } else {
       console.log(' Running Modeler version ' + chalk.cyan(filteredKey) + '\n');
-      mendixRunner.run(modelerPath, null);
+      mendixRunner.run(modelerPath, null, featureFlags);
     }
 
   } else {
