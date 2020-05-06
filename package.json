@@ -7,7 +7,9 @@
     "mx-modeler": "./bin/mx-modeler"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "keywords": [
     "mendix",
@@ -36,6 +38,8 @@
     "optimist": "^0.6.1",
     "pad": "^2.0.3",
     "sqlite3": "^4.0.3",
-    "update-notifier": "^2.3.0"
-  }
+    "update-notifier": "^2.3.0",
+    "snyk": "^1.319.0"
+  },
+  "snyk": true
 }
