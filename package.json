@@ -36,6 +36,6 @@
     "optimist": "^0.6.1",
     "pad": "^2.0.3",
     "sqlite3": "^4.0.3",
-    "update-notifier": "^2.3.0"
+    "update-notifier": "^3.0.0"
   }
 }
